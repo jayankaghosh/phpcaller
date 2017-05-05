@@ -1,0 +1,6 @@
+#!/usr/bin/php
+<?php
+
+require_once 'bin/PHPCaller.php';
+$phpCaller = new PHPCaller('cli', $argv);
+$phpCaller->run(true);
