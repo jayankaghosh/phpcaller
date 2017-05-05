@@ -1,4 +1,5 @@
-PHPCALLER - A PHP wrapper for the Truecaller API
+#PHPCALLER - A PHP wrapper for the Truecaller API
+
 MADE WITH L<3VE BY j0y <jayankaghosh@gmail.com>
 
 DISCLAIMER: This was purely a hobby project with no intention of distributing or marketing this software
@@ -14,7 +15,7 @@ After the login is done open your console and paste this script (don't worry, th
 
 Now search for another number, and you should be able to see a code in your screen. That is your bearer ID. Copy it and run the command php truecaller setBearer <your_bearer_id>
 
-So if your bearer ID is "Y99Opnpg2e5_KDZpys6RRASvym7" then you should type 
+So if your bearer ID is `Y99Opnpg2e5_KDZpys6RRASvym7` then you should type 
 
     php truecalled setBearer Y99Opnpg2e5_KDZpys6RRASvym7 
 
