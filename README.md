@@ -16,11 +16,11 @@ After the login is done open your console and paste this script (don't worry, th
         };
     })(XMLHttpRequest.prototype.setRequestHeader);
 
-Now search for another number, and you should be able to see a code in your screen. That is your bearer ID. Copy it and run the command php truecaller setBearer <your_bearer_id>
+Now search for another number, and you should be able to see a code in your screen. That is your bearer ID. Copy it and run the command `php truecaller setBearer <your_bearer_id>`
 
 So if your bearer ID is `Y99Opnpg2e5_KDZpys6RRASvym7` then you should type 
 
-    php truecalled setBearer Y99Opnpg2e5_KDZpys6RRASvym7 
+    php truecaller setBearer Y99Opnpg2e5_KDZpys6RRASvym7 
 
 to set your bearer 
 
