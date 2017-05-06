@@ -4,9 +4,10 @@ class Helper {
 	
 
 	const COMMANDS = array(
-		"search"	=>	"Search for an account by it's number. Usage: ./truecaller search <number>",
-		"list"		=>	"Lists all available commands",
-		"help"		=>	"Shows the help manual"
+		"search"		=>	"Search for an account by it's number. Usage: ./truecaller search <number> <country_code>. NOTE: If country_code is left blank, by default \"IN\" will be used",
+		"list"			=>	"Lists all available commands",
+		"help"			=>	"Shows the help manual",
+		"suggest_name"	=>	"Suggest a new name for a number. Usage: ./truecaller suggest_name +919876543210 Walter%20White. NOTE: the number has to be along with country code and the name has to be URL encoded"		
 	);
 
 	const BEARER_FILENAME = '.bearer';
@@ -28,7 +29,7 @@ class Helper {
 	public function listCommands(){
 		foreach(self::COMMANDS as $command => $description){
 			echo $this->_tabCharacter.$command.$this->_tabCharacter;
-			echo Output::colorString($description, "success");
+			echo str_replace("\n", "\n".$this->_tabCharacter.$this->_tabCharacter, chunk_split(Output::colorString($description, "success"), 100));
 			echo $this->_newLineCharacter;
 		}
 		echo $this->_newLineCharacter;

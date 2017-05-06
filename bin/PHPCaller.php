@@ -63,9 +63,33 @@ class PHPCaller {
 				$api->setHeaders(array(
 					"authorization"	=>	"Bearer $bearer"
 				));
-				$r = $api->fetch($this->_argv[2]);
+				if(isset($this->_argv[3])){
+					$r = $api->fetch($this->_argv[2], $this->_argv[3]);
+				}
+				else{
+					$r = $api->fetch($this->_argv[2]);
+				}
 				Output::write(Output::colorString($r['body'], "success"));
 				break;
+			case 'suggest_name':
+				if(!isset($this->_argv[2]) || !is_numeric($this->_argv[2]) || !isset($this->_argv[3])){
+					Output::write(Output::colorString("Phone number or name not provided or is invalid"));
+					return;
+				}
+				$bearer = $helper->getBearer();
+				$api->setHeaders(array(
+					"authorization"	=>	"Bearer $bearer",
+					"Content-Type"	=>	"application/json"
+				));
+				$r = $api->suggestName($this->_argv[2], urldecode($this->_argv[3]));
+				if($r['response_code'] == 200){
+					Output::write(Output::colorString("Your suggestion was sent", "success"));
+				}
+				else{
+					Output::write(Output::colorString($r['body'], "error"));
+				}
+				break;
+
 			default:
 				Output::write(Output::colorString($this->tabCharacter."ERROR: ", "error").Output::colorString("Front ").Output::colorString("\"".$this->_argv[1]."\"", "error").Output::colorString(" not found"));
 				echo $this->tabCharacter."LIST OF AVAILABLE COMMANDS".$this->newLineCharacter.$this->newLineCharacter;

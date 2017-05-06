@@ -5,7 +5,7 @@ class Api {
 	protected $_apiBaseUrl, $_debug, $_headers;
 
 	public function __construct(){
-		$this->_apiBaseUrl = "https://www.truecaller.com/api/search";
+		$this->_apiBaseUrl = "https://www.truecaller.com/api/";
 		$this->_debug = false;
 		$this->_headers = [];
 	}
@@ -21,8 +21,17 @@ class Api {
 			'countryCode'	=>	$countryCode,
 			'q'				=>	$number
 		);
-		$front = "?".http_build_query($front);
+		$front = "search?".http_build_query($front);
 		return $this->_sendRequest($front);
+	}
+
+	public function suggestName($number, $name){
+		$payload = json_encode(array(array(
+			"p"	=>	$number,
+			"n"	=>	$name,
+			"t"	=>	1
+		)));
+		return $this->_sendRequest("nameSuggestion", "POST", $payload);
 	}
 
 	protected function _sendRequest($front = null, $method = "GET", $params = [], $sendHeaders = true){
@@ -34,8 +43,11 @@ class Api {
 			}
 			if($method === "POST"){
 				curl_setopt($ch, CURLOPT_POST, 1);
-				if(count($params) > 0){
+				if(count($params) > 0 && is_array($params)){
 					curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($params));
+				}
+				else if(strlen($params) > 0){
+					curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 				}
 			}
 			if($this->_debug){
