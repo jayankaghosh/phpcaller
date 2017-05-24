@@ -4,9 +4,10 @@ class Output {
 
 	private static $_status = true;
 	private  static $_newLineCharacter = "\n";
+	public static $ignoreDecoration = false;
 
 	private function isCli(){
-		return php_sapi_name() === "cli";
+		return php_sapi_name() === "cli" && !self::$ignoreDecoration;
 	}
 
 	public static function showOutput($status = true){

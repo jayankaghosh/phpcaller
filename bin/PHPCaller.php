@@ -16,7 +16,13 @@ class PHPCaller {
 	}
 
 	public function run($secureMode = true){
-		Output::setNewLineCharacter($this->newLineCharacter);
+		if($this->_argv[count($this->_argv)-1] == "ignore-decoration"){
+			Output::$ignoreDecoration = true;
+			Output::setNewLineCharacter("");
+		}
+		else{
+			Output::setNewLineCharacter($this->newLineCharacter);
+		}
 		if($secureMode && php_sapi_name() !== $this->_sapi){
 			echo "Unauthorized access";
 			return;
