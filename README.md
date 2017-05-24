@@ -30,6 +30,10 @@ Now you're all set to go! Type,
 
 to get a JSON response from truecaller about the number
 
+__NOTE__ To get the response without the colour codes (for when you're calling this script from a different application or bot) just add `ignore-decoration` at the end of the command. 
+
+Eg, `php truecaller search 9876543210 ignore-decoration`
+
 Example:
 
     php truecaller search 9876543210
