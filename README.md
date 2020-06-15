@@ -1,4 +1,6 @@
 
+# NOTE This is now DEPRECATED and will NOT work anymore
+
 __PHPCALLER - A PHP wrapper for the Truecaller API__
 
 MADE WITH L<3VE BY __j0y__ <<jayankaghosh@gmail.com>>
